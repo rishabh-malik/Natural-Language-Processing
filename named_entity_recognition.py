@@ -22,8 +22,21 @@ custom_sent_tokenizer = PunktSentenceTokenizer(train_text)
 
 tokenized = custom_sent_tokenizer.tokenize(sample_text)
 
+def process_content():
+    try:
+        for i in tokenized[5:]:
+            words = nltk.word_tokenize(i)
+            tagged = nltk.pos_tag(words)
+            namedEnt = nltk.ne_chunk(tagged, binary=True)
+            namedEnt.draw()
+    except Exception as e:
+        print(str(e))
 
 
+process_content()
+
+# When Binary is False, it picked up the same things, but wound up splitting up terms like White House into "White" and "House" as if they were different,
+# whereas we could see in the binary = True option, the named entity recognition was correct to say White House was part of the same named entity.
 
 
 
