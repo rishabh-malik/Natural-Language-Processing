@@ -11,6 +11,19 @@ print(syns[0].definition())
 #Examples of the word in use:
 print(syns[0].examples())
 
+#synonyms and antonyms to a word
+synonyms = []
+antonyms = []
+
+for syn in wordnet.synsets("good"):
+    # lemmas will be synonyms
+    for l in syn.lemmas():
+        synonyms.append(l.name())
+        if l.antonyms():
+            antonyms.append(l.antonyms()[0].name())
+
+print(set(synonyms))
+print(set(antonyms))
 
 
 
